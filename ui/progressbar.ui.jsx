@@ -1,14 +1,12 @@
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import React from 'react';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-export default function ProgressBar() {
+export default function ProgressBar({time, length}) {
+  const currentPosition = time / (length / 100)
     return (
       <View style={styles.container}>
-        <View style = {{...styles.bar, width: "50%"}}></View>
-        {/* <Icon name = "circle" color = "purple" size = {15}/> */}
+        <View style = {{...styles.bar, width: currentPosition + "%"}}></View>
       </View>
     );
   }
@@ -18,13 +16,10 @@ export default function ProgressBar() {
         flexBasis:"100%",
         width:"80%",
         backgroundColor:"gray",
-        // display:"flex",
-        // flexDirection:"row"
     },
     bar: {
         backgroundColor:"purple",
         height:"4px",
-        // filter:"blur(2px)"
     }
   });
   

@@ -1,18 +1,32 @@
 
 import { StyleSheet, Text, ScrollView } from 'react-native';
-import Track from '../components/trackresult.component';
+import Filter from '../components/musicfilter.component';
+import FilterDropdown from '../components/filterdropdown.component';
 import { StateContext, StateDispatchContext } from '../state/provider';
 import React from 'react';
 
-export default function TrackBrowser({tracks}) {
+export default function TrackBrowser() {
     const state = React.useContext(StateContext)
-    console.log(tracks)
+    const {filter} = React.useContext(StateContext).filter
+    let filtered = {}
+    let groupings = []
+
+    state.searchResults?.forEach((track) => {
+      if (filtered.hasOwnProperty(track[filter]))
+        filtered[track[filter]].push(track)
+      else
+        filtered[track[filter]] = [track]
+    })
+
+    Object.keys(filtered).forEach((el, key) => {
+      groupings.push(<FilterDropdown key = {key} title = {el} tracks = {filtered[el]}/>)
+    })
     return (
+      <>
+      <Filter></Filter>
       <ScrollView style = {styles.container}>
-        {state.searchResults.map((track, key) => {
-          return <Track key = {key} id = {key} track = {{artist: "me", track: "tune", length: 100}} />
-        })}
-      </ScrollView>
+      {groupings}
+      </ScrollView></>
     );
   }
 

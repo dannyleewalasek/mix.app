@@ -1,18 +1,20 @@
 
 import { StyleSheet, Text, View } from 'react-native';
 import { StateContext, StateDispatchContext } from '../state/provider';
-import React from 'react';
+import React, {useContext} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProgressBar from '../ui/progressbar.ui';
 
 export default function Controls() {
-    const state = React.useContext(StateContext)
+    const {playbackStatus} = React.useContext(StateContext)
+    const {setPlaybackStatus} = useContext(StateDispatchContext);
     return (
       <View style={styles.container}>
-        <ProgressBar/>
+        <ProgressBar time = {playbackStatus.time} length = {playbackStatus.length}/>
         <Icon name = "repeat" color = "white" size = {15}/>
         <Icon name = "backward" color = "white" size = {30}/>
-        <Icon name = "play" color = "white" size = {40}/>
+        <Icon name = {playbackStatus.playing ? "play" : "pause"} color = "white" size = {40} 
+        onClick = {() => setPlaybackStatus({...playbackStatus, playing: !playbackStatus})}/>
         <Icon name = "forward" color = "white" size = {30}/>
         <Icon name = "sliders" color = "white" size = {15}/>
       </View>
