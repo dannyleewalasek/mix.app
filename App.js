@@ -1,18 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { createContext, useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import Home from './pages/home.page';
-import TrackBrowser from './pages/trackbrowser.page';
-import orange from './assets/orange.jpg';
-import { StateProvider } from './state/provider';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View, Image, Platform, StatusBar, dimensions } from 'react-native';
+import Home from './src/pages/home.page';
+import TrackBrowser from './src/pages/trackbrowser.page';
+import { StateProvider } from './src/state/provider';
 import Swiper from 'react-native-swiper/src';
 
 export default function App() {
 
   return (
     <StateProvider>
-      <Image source = {{uri: orange}} style = {styles.background}></Image>
-      <Swiper>
+      <Image source={require('./src/assets/orange.jpg')} style = {styles.background}></Image>
+      <Swiper loop={false}>
         <View style={styles.container}>
           <Home />
         </View>
@@ -31,8 +29,9 @@ const styles = StyleSheet.create({
   },
 
   background: {
+    flex:1,
     position:"absolute",
-    width: '100vw',
-    height: '100vh',
+    width: '100%',
+    height:"100%"
   }
 });

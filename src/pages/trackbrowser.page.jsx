@@ -3,7 +3,7 @@ import { StyleSheet, Text, ScrollView } from 'react-native';
 import Filter from '../components/musicfilter.component';
 import FilterDropdown from '../components/filterdropdown.component';
 import { StateContext, StateDispatchContext } from '../state/provider';
-import React from 'react';
+import React, {useEffect} from 'react';
 
 export default function TrackBrowser() {
     const state = React.useContext(StateContext)
@@ -11,11 +11,10 @@ export default function TrackBrowser() {
     let filtered = {}
     let groupings = []
 
+    //THIS SHOULD BE DONE IN THE PROVIDER WHEN SETTING STATE?
+    
     state.searchResults?.forEach((track) => {
-      if (filtered.hasOwnProperty(track[filter]))
-        filtered[track[filter]].push(track)
-      else
-        filtered[track[filter]] = [track]
+      filtered.hasOwnProperty(track[filter]) ? filtered[track[filter]].push(track) : filtered[track[filter]] = [track]
     })
 
     Object.keys(filtered).forEach((el, key) => {
@@ -23,9 +22,9 @@ export default function TrackBrowser() {
     })
     return (
       <>
-      <Filter></Filter>
+      <Filter />
       <ScrollView style = {styles.container}>
-      {groupings}
+        {groupings}
       </ScrollView></>
     );
   }
@@ -33,9 +32,7 @@ export default function TrackBrowser() {
   const styles = StyleSheet.create({
     container: {
         height: "100%",
-        width: "100%",
-        backgroundColor: "rgba(0,0,255,0.1)",
-        backdropFilter: "blur(8px)",
+        width: "100%"
     },
   });
   

@@ -18,8 +18,8 @@ export default function ProgressBar({time, length}) {
         backgroundColor:"gray",
     },
     bar: {
-        backgroundColor:"purple",
-        height:"4px",
+        backgroundColor:"rgba(255,255,255,0.5)",
+        height:8,
     }
   });
   

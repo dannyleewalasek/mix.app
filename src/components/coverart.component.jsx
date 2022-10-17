@@ -1,6 +1,5 @@
 
-import { StyleSheet, Text, View } from 'react-native';
-import { styleProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
+import { StyleSheet, View } from 'react-native';
 
 export default function CoverArt() {
     return (
@@ -14,13 +13,18 @@ export default function CoverArt() {
     container: {
         height: "50%",
         width: "100%",
-        backgroundColor: "rgba( 70, 34, 10, 0.8 )",
-        backdropFilter: "blur(8px)",
+        backdropFilter: "blur(8)",
+        justifyContent:"center",
+        alignItems:"center"
     },
     image: {
         width:"80%",
         height:"80%",
         backgroundColor:"white",
+        shadowColor: "#000", shadowOffset:{ width: 0,height: 2,},
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     }
   });
   
