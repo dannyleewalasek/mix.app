@@ -5,11 +5,13 @@
 <p>Currently UI only, but will have actual media playback</p>
 
 <h2>To Do</h2>
-settings popup
-progressbar functionality
-handle folders in music directory
-read metadata from files
-rewind/adjust position
+<ul>
+    <li>settings popup </li>
+    <li>progressbar functionality</li>
+    <li>handle folders in music directory</li>
+    <li>read metadata from files</li>
+    <li>rewind/adjust position</li>
+</ul>
 
 
 # ![responsive](readme/readmescreenshots.png)
