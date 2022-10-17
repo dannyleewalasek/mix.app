@@ -1,19 +1,19 @@
 
 import { StyleSheet, View } from 'react-native';
-import { StateDispatchContext } from '../state/provider';
+import { AppContext } from '../state/provider';
 import React, {useContext} from 'react';
 import FilterButton from '../ui/filterbutton.ui';
 
 export default function Filter() {
 
-    const {setFilter} = useContext(StateDispatchContext);
+    const {dispatch} = useContext(AppContext);
     return (
       <View style={styles.container}>
-        <FilterButton text = "Song" onPress = {() => setFilter({filter: "song"})}/>
-        <FilterButton text = "Artist" onPress = {() => setFilter({filter: "artist"})}/>
-        <FilterButton text = "Album" onPress = {() => setFilter({filter: "album"})}/>
-        <FilterButton text = "Genres" onPress = {() => setFilter({filter: "genre"})}/>
-        <FilterButton text = "Playlists" onPress = {() => setFilter({filter: "playlist"})}/>
+        <FilterButton text = "Song" onPress = {() => dispatch({type: "SETFILTER", payload: "song"})}/>
+        <FilterButton text = "Artist" onPress = {() => dispatch({type: "SETFILTER", payload: "artist"})}/>
+        <FilterButton text = "Album" onPress = {() => dispatch({type: "SETFILTER", payload: "album"})}/>
+        <FilterButton text = "Genres" onPress = {() => dispatch({type: "SETFILTER", payload: "genre"})}/>
+        <FilterButton text = "Playlists" onPress = {() => dispatch({type: "SETFILTER", payload: "playlist"})}/>
       </View>
     );
   }

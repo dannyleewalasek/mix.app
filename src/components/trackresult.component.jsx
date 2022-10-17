@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { useState, useContext } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { StateDispatchContext } from '../state/provider';
+import { AppContext } from '../state/provider';
 
 
 export default function Track ({track})  {
     const [selected, setSelected] = useState(false);
-    const {setPlaybackStatus} = useContext(StateDispatchContext);
+    const {dispatch} = useContext(AppContext);
     return (
         <View style ={{...styles.row, height: selected ? 300 : 100}} >
             <View style={styles.basicContainer}>
-            <Text style ={styles.id} onPress = {() => setPlaybackStatus((prevState) =>  ({...prevState, track}))}><Icon name = "play"></Icon></Text>
+            <Text style ={styles.id} onPress = {() => dispatch({type: "SETTRACK", payload:track})}><Icon name = "play"></Icon></Text>
             <View style = {styles.artistandtitle}>
                 <Text style ={styles.track}>{track.track.toUpperCase()}</Text>
                 <Text style ={styles.artist}>{track.artist}</Text>
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         width:"100%",
         paddingTop: 30,
         height: 100,
-        display:"flex",
         flexDirection: "row",
         flexWrap:"wrap",
         justifyContent:"space-around",
@@ -44,7 +43,6 @@ const styles = StyleSheet.create({
         color:"white",
         width:"100%",
         height: 100,
-        display:"flex",
         flexDirection: "row",
         justifyContent:"space-around",
     },
@@ -68,7 +66,6 @@ const styles = StyleSheet.create({
         width:"5%"
     },
     artistandtitle: {
-        display:"flex",
         flexDirection:"column",
         width:"20%"
     }

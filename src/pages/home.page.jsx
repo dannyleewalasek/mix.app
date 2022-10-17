@@ -1,27 +1,32 @@
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import CoverArt from '../components/coverart.component';
-import { StateContext, StateDispatchContext } from '../state/provider';
+import { AppContext } from '../state/provider';
 import React, {useEffect, useContext} from 'react';
-import { getDummyTracks } from '../utils/musixmatch.utils';
 import Controls from '../components/controls.component';
 import TrackDetails from '../components/trackDetails.component';
+import { readDir, ExternalStorageDirectoryPath} from 'react-native-fs';
 
 const Home = () => {
-  const state = useContext(StateContext)
-  const {setTrackDetails} = useContext(StateDispatchContext);
+  const {state} = useContext(AppContext)
 
   useEffect(() => {
     const setTracks = async() => {
-      const tracks = await getDummyTracks()
-      setTrackDetails({searchResults: tracks})
+      let trackList = []
+
+      // await readDir(`${ExternalStorageDirectoryPath}/Download`).then((res) => {
+      //   res.forEach(tune => alert(tune.path))}
+      //   ,(err) => alert(err))
+      //   // alert(trackList[0].filepath)
+      // dispatch({type:"SETFILES",payload: trackList})
     }
+    
     setTracks()
   },[])
     return (
       <View style={styles.container}>
         <CoverArt/>
-        <TrackDetails track = {state.playbackStatus.track}/>
+        <TrackDetails track = {state.track}/>
         <Controls/>
       </View>
     );

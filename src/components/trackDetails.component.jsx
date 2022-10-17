@@ -18,16 +18,16 @@ const style = StyleSheet.create({
     },
     songName:{
         color:"white",
-        fontSize: 50
+        fontSize: 30
     },
     artist: {
         color:"white",
-        fontSize: 30
+        fontSize: 15
     },
     albumName: {
         color:"white",
         
-        fontSize: 30
+        fontSize: 15
     }
 })
 

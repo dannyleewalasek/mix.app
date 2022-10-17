@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { StyleSheet, Text, View, Image, Platform, StatusBar, dimensions } from 'react-native';
 import Home from './src/pages/home.page';
 import TrackBrowser from './src/pages/trackbrowser.page';
-import { StateProvider } from './src/state/provider';
+import StateProvider from './src/state/provider';
 import Swiper from 'react-native-swiper/src';
 
 export default function App() {
